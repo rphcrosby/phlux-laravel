@@ -2,6 +2,8 @@
 
 namespace Phlux\Laravel\Facades;
 
+use Illuminate\Support\Facades\Facade;
+
 /**
  * @see Phlux\Phlux
  */

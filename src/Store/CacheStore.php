@@ -1,29 +1,30 @@
 <?php
 
-namespace Phlux\Laravel\State;
+namespace Phlux\Laravel\Store;
 
 use Phlux\Store\Store;
 use Phlux\Contracts\StateInterface;
-use Illuminate\Session\Store as LaravelSessionStore;
+use Illuminate\Cache\CacheManager as LaravelCacheStore;
 
-class SessionStore extends Store
+class CacheStore extends Store
 {
     /**
-     * The Laravel session store
+     * The Laravel cache store
      *
-     * @var Illuminate\Session\Store
+     * @var Illuminate\Cache\CacheManager
      */
     protected $store;
 
     /**
-     * Create a new session store
+     * Create a new cache store
      *
-     * @param Illuminate\Session\Store $store
+     * @param Illuminate\Cache\CacheManager $store
+     * @param string $id
      * @return void
      */
-    public function __construct(LaravelSessionStore $store)
+    public function __construct(LaravelCacheStore $store, $id)
     {
-        $this->setId($store->getId());
+        $this->setId($id);
         $this->store = $store;
     }
 
@@ -34,7 +35,7 @@ class SessionStore extends Store
      */
     public function set(StateInterface $state)
     {
-        $this->store->set($this->getId(), serialize($state));
+        $this->store->forever($this->getId(), serialize($state));
     }
 
     /**
