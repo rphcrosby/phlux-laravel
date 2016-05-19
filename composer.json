@@ -7,6 +7,12 @@
             "email": "rphcrosby@gmail.com"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/rphcrosby/phlux"
+        }
+    ],
     "minimum-stability": "stable",
     "require": {
         "rphcrosby/phlux": "dev-master",
